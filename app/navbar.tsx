@@ -1,9 +1,14 @@
+"use client";
+
+import { cn } from "@/lib/utils";
 import { Bug } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
+  const currentPath = usePathname();
+
   const links = [
     {
       label: "Dashboard",
@@ -35,7 +40,10 @@ const NavBar = () => {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-zinc-500 hover:text-zinc-800 transition-colors"
+              className={cn(
+                " hover:text-zinc-800 transition-colors",
+                currentPath === link.href ? "text-zinc-900" : "text-zinc-500"
+              )}
             >
               {link.label}
             </Link>
